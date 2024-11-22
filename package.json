@@ -5,9 +5,12 @@
   "scripts": {
     "build": "rollup --config rollup.config.js"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/designa-team/html2pptxgenjs"
+    "url": "git+https://github.com/designa-team/html2pptxgenjs.git"
   },
   "author": "Ulises Medrano",
   "license": "MIT",
@@ -40,10 +43,14 @@
           "failTitle": false,
           "labels": false,
           "assets": [
-            { "path": "dist/**", "label": "JS distribution" }
+            {
+              "path": "dist/**",
+              "label": "JS distribution"
+            }
           ]
         }
       ]
     ]
-  }
+  },
+  "version": ""
 }
