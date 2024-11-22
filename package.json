@@ -27,6 +27,12 @@
     "plugins": [
       "@semantic-release/commit-analyzer",
       [
+        "@semantic-release/npm",
+        {
+          "tarballDir": "dist"
+        }
+      ],
+      [
         "@semantic-release/github",
         {
           "successComment": false,
@@ -34,7 +40,7 @@
           "failTitle": false,
           "labels": false,
           "assets": [
-            { "path": "dist/", "label": "JS distribution" }
+            { "path": "dist/**", "label": "JS distribution" }
           ]
         }
       ]
