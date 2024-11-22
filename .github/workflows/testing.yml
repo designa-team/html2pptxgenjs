@@ -23,6 +23,6 @@ jobs:
       - name: Install dependencies 
         run: |
           npm install --global rollup
-          npm install
+          npm install --no-audit
       - name: Build
-        run: npm build
+        run: npm run build
