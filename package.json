@@ -1,6 +1,5 @@
 {
   "name": "html2pptxgenjs",
-  "version": "0.0.3",
   "description": "Convert HTML into PptxGenJS text",
   "main": "dist/html2pptxgenjs.cjs.js",
   "scripts": {
@@ -8,17 +7,37 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/it-beyondit/html2pptxgenjs"
+    "url": "https://github.com/designa-team/html2pptxgenjs"
   },
-  "author": "BeyondIt S.r.l.",
+  "author": "Ulises Medrano",
   "license": "MIT",
   "dependencies": {
-    "css": "^2.2.4",
+    "@adobe/css-tools": "^4.4.1",
     "htmlparser2": "^4.1.0",
     "parse-color": "^1.0.0"
   },
   "devDependencies": {
     "pptxgenjs": "^3.1.1",
     "rollup-plugin-terser": "^5.3.0"
+  },
+  "release": {
+    "branches": [
+      "master"
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      [
+        "@semantic-release/github",
+        {
+          "successComment": false,
+          "failComment": false,
+          "failTitle": false,
+          "labels": false,
+          "assets": [
+            { "path": "dist/", "label": "JS distribution" }
+          ]
+        }
+      ]
+    ]
   }
 }

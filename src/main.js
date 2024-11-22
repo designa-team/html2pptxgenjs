@@ -48,6 +48,7 @@ function htmlToPptxText(html, options) {
             case 's':
             case 'sub':
             case 'sup':
+            case 'strong':
             case 'u':
                 context[name] = true;
                 break;
@@ -72,6 +73,7 @@ function htmlToPptxText(html, options) {
                 context.bulletOptions = true;
                 break;
             case 'li':
+                addBreak();
                 context.bullet = true;
                 break;
             case 'h1':

@@ -2,7 +2,7 @@
 //
 // Use of this source code is governed by an MIT-style license that can be found
 // in the LICENSE file or at https://opensource.org/licenses/MIT.
-const cssparser = require('css');
+const cssparser = require('@adobe/css-tools');
 const parsecolor = require('parse-color');
 
 function Context(options) {
@@ -203,7 +203,7 @@ Context.prototype.toPptxTextOptions = function () {
     let options = {};
 
     options.align = this.align;
-    options.bold = !!this.b;
+    options.bold = !!this.b || !!this.strong;
     options.breakLine = !!this.break;
     options.color = this.color;
     this.fill && (options.fill = this.fill);

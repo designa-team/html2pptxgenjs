@@ -1,0 +1,28 @@
+name: Testing
+on: [pull_request]
+permissions:
+  contents: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true  
+jobs:
+  checkcode:
+    name: Check Code
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        version: [16, 18, 20, 22]
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.ref }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.version }}
+      - name: Install dependencies 
+        run: |
+          npm install --global rollup
+          npm install
+      - name: Build
+        run: npm build

@@ -1,0 +1,35 @@
+name: Releases
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  changelog:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: |
+          npm ci
+          npm run build
+      - name: Semantic Release
+        id: versioning
+        uses: cycjimmy/semantic-release-action@v4
+        with:
+          semantic_version: 18
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Check release version
+        run: |
+          if [ -n "${{ steps.versioning.outputs.new_release_version }}" ]; then
+            echo "New release version detected: ${{ steps.versioning.outputs.new_release_version }}"
+          else
+            echo "No new release version detected. Skipping subsequent jobs..."
+            exit 0
+          fi
+      - run: |
+          echo "### :rocket: New version: ${{ steps.versioning.outputs.new_release_version }}" >> $GITHUB_STEP_SUMMARY
