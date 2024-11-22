@@ -1,5 +1,5 @@
 {
-  "name": "html2pptxgenjs",
+  "name": "@designa/html2pptxgenjs",
   "description": "Convert HTML into PptxGenJS text",
   "main": "dist/html2pptxgenjs.cjs.js",
   "scripts": {
